@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Clean G+ Settings</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      label {
+        display: block;
+      }
+      textarea {
+        font-family: monospace;
+      }
+      .message {
+        height: 20px;
+        background: #eee;
+        padding: 5px;
+      }
+    </style>
+    <script type="text/javascript" src="options.js">
+    </script>
+  </head>
+  <body onload="loadOptions();">
+    <h3>Clean G+ options</h3>
+    <p>Note: You may need to restart your browser for changes to take effect.</p>
+    <table>
+      <tr>
+	<td>Show speech bubbles</td>
+	<td><select id="showBubble">
+          <!-- option value="Y">Yes</option -->
+          <option value="N">No</option>
+	</select></td>
+      </tr>
+      <tr>
+	<td>Show right bar (hangout &amp; chat)</td>
+	<td><select id="showChat">
+          <option value="Y">Yes</option>
+          <!-- option value="N">No</option -->
+	</select></td>
+      </tr>
+      <tr>
+	<td>Color theme</td>
+	<td><select id="theme">
+          <option value="#ccf">Pale blue</option>
+	</select></td>
+      </tr>
+    </table>
+    <button onclick="saveOptions();">Save</button>
+    <button onclick="clearOptions();">Restore defaults</button>
+  </body>
+</html>

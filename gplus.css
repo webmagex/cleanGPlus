@@ -1,0 +1,76 @@
+/* Expand content div */
+.OT {
+  width: 95% !important;
+}
+
+/* Move 'What's new' post entry box */
+.Sea {
+  bottom: 0px !important;
+  position: fixed !important;
+  z-index: 50 !important;
+  margin-left: -20px !important;
+  float: left !important;
+}
+
+/* Move circle list to bottom */
+.PK {
+  position: fixed !important;
+  z-index: 50 !important;
+  margin-left: -100px !important;
+  bottom: 0px !important;
+  height: 50px !important;
+}
+.OK, .OQ {
+  padding-left: 600px !important;
+}
+.kv, .Ny {
+  background: none !important;
+}
+
+/* Post content */
+.FE { /* Name + Date */
+  padding: 2px 2px 0 2px !important;
+    background: #ddd !important;
+}
+.rs {
+  margin: 3px 3px 0 3px !important;
+}
+.Gm {
+  padding: 3px 2px 0 !important;
+}
+.Op {
+  padding: 0 !important;
+}
+.Gm .Om {
+  margin: 0 !important;
+}
+.Uga {
+  height: 335px !important;
+}
+.BE {
+  margin-top: -38px !important;
+  border-top: 0 !important;
+  height: 38px !important;
+}
+.Yd.esw, .Tj {
+  float: right !important;
+}
+.h8 {
+  margin-top: 0 !important;
+  width: 100% !important;
+}
+.Gb {
+  clear: none !important;
+  vertical-align: top !important;
+  display: inline-block !important;
+  margin: 0 10px !important;
+}
+.Zo {
+  margin: 0 !important;
+  padding: 0 10px 0 0 !important;
+}
+
+/* Hide right bar */
+.ksa {
+  display: none !important;
+}
