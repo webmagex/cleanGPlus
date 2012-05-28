@@ -1,7 +1,7 @@
 {
   "name": "Clean Google+",
   "description": "Clean up Google+ to make it more usable.",
-  "version": "1.2",
+  "version": "1.3",
 
   "permissions": [
     "tabs",
