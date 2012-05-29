@@ -5,6 +5,7 @@
     <style>
       body {
         font-family: sans-serif;
+        background: #ddd;
       }
       label {
         display: block;
@@ -12,38 +13,71 @@
       textarea {
         font-family: monospace;
       }
-      .message {
-        height: 20px;
-        background: #eee;
-        padding: 5px;
+      td {
+        vertical-align: top;
+        background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ddd));
+      }
+      .notworking {
+        display: none;
       }
     </style>
     <script type="text/javascript" src="options.js">
     </script>
   </head>
   <body onload="loadOptions();">
-    <h3>Clean G+ options</h3>
-    <p>Note: You may need to restart your browser for changes to take effect.</p>
+    <h3>Clean G+ Settings</h3>
     <table>
       <tr>
-	<td>Show speech bubbles</td>
+	<td colspan="2"><b>Display Settings</b></td>
+      </tr>
+      <tr>
+	<td>Show speech bubbles:</td>
 	<td><select id="showBubble">
-          <!-- option value="Y">Yes</option -->
+          <option value="Y">Yes</option>
           <option value="N">No</option>
 	</select></td>
       </tr>
       <tr>
-	<td>Show right bar (hangout &amp; chat)</td>
+	<td>Show right bar (hangout &amp; chat):</td>
 	<td><select id="showChat">
           <option value="Y">Yes</option>
-          <!-- option value="N">No</option -->
+          <option value="N">No</option>
 	</select></td>
       </tr>
       <tr>
-	<td>Color theme</td>
+	<td>Post title color theme:</td>
 	<td><select id="theme">
-          <option value="#ccf">Pale blue</option>
+          <option value="#ccf">Blue</option>
+          <option value="#cfc">Green</option>
+	  <option value="#eee">Grey</option>
+          <option value="#fcc">Red</option>
 	</select></td>
+      </tr>
+      <tr>
+	<td colspan="2"><b>Content Settings</b></td>
+      </tr>
+      <tr class="notworking">
+	<td>Hide these posts:<br /><small><i>Hold Ctrl and click to select multiple entries</i></small></td>
+        <td><select id="hide" size="3" multiple>
+          <option value="photos">Photos</option>
+          <option value="videos">Videos</option>
+          <option value="whatshot">What's Hot</option>
+        </select></td>
+      </tr>
+      <tr>
+	<td>Sort posts:</td>
+	<td><select id="columns">
+          <option value="1">No</option>
+          <option value="2">Yes</option>
+	</select></td>
+      </tr>
+      <tr>
+	<td>Move these posts to the right side <br />(applies only if sorted posts):<br /><small><i>Hold Ctrl and click to select multiple entries</i></small></td>
+        <td><select id="rightcol" size="4" multiple>
+          <option value="photos" selected="selected">Photos</option>
+          <option value="videos" selected="selected">Videos</option>
+          <option value="text">Others</option>
+        </select></td>
       </tr>
     </table>
     <button onclick="saveOptions();">Save</button>
