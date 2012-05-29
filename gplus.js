@@ -22,7 +22,7 @@ if (columns === undefined) columns = "2";
 // Generate Style overrides
 var css = ".FE { background: -webkit-gradient(linear, left top, right top, from(" + theme + "), to(#ccc)) !important; } ";
 if (columns == "2") {
-  css = css + ".replacement {width: 50%; float: left; position: relative; } ";	
+  css = css + ".replacement {width: 50%; min-width: 500px; float: left; position: relative; } ";	
 }
 if (showbubble == "N") {
   css = css + ".SF { display: none !important; } .Zo { margin: 0 0 0 -50px; !important; } "; 
@@ -51,24 +51,20 @@ head.appendChild(style);
 // Add stream pausing functionality
 // ================================
 
-var paused = false;
 var pauseButton = document.createElement("div");
+var pauseText = "| |";
+var pauseTitle = "Click to pause stream.";
+var startText = ">";
+var startTitle = "Click to allow stream to update automatically.";
 pauseButton.setAttribute("class", "pausebutton");
+pauseButton.setAttribute("id", "paused");
 pauseButton.setAttribute("onclick", "togglePause();");
-pauseButton.innerHtml = "Pause stream";
-/* TODO: For some reason this breaks G+ scripts?
-var body = document.getElementsByTagName("body")[0];
-body.appendChild(pauseButton);*/
-function togglePause() {
-  if (paused === false) {
-    paused = true;
-    pauseButton.innerHtml = "Start stream";
-  } else {
-    paused = false;
-    pauseButton.innerHtml = "Pause stream";
-  }
-}
+pauseButton.setAttribute("title", pauseTitle);
+pauseButton.innerHTML = pauseText;
 
+var pauseScript = document.createElement("script");
+pauseScript.innerHTML = " function togglePause() {  var pauseButton = document.getElementById(\"paused\");  if (pauseButton.innerHTML == \"" + pauseText + "\") { pauseButton.innerHTML = \"" + startText + "\"; pauseButton.setAttribute(\"title\", \"" + startTitle + "\");  } else { pauseButton.innerHTML = \"" + pauseText + "\"; pauseButton.setAttribute(\"title\", \"" + pauseTitle + "\");  }}";
+head.appendChild(pauseScript);
 // Split posts into two columns
 // ============================
 
@@ -99,6 +95,10 @@ function createReplacementDivs() {
   textdiv.setAttribute("id", "textdiv");
   streamcontent.insertBefore(mediadiv,streamcontent.childNodes[2]);
   streamcontent.insertBefore(textdiv,streamcontent.childNodes[2]);
+  streamcontent.insertBefore(pauseButton,streamcontent.childNodes[2]);
+  
+  // Move get more post button
+  streamcontent.childNodes[5].setAttribute("style", "position: fixed; bottom: 7px; right: 100px; z-index: 50; margin: 0px; ");
 }
 
 function sortContent() {
@@ -109,7 +109,7 @@ function sortContent() {
   }
 
   // Sort the content into replacement divs	
-  if (paused === false) {
+  if (paused.innerHTML == pauseText || (mediadiv.children.length == 0 && textdiv.children.length == 0)) {
     if (awdiv != "undefined")
     // Note: We always leave one element in the aw div so that G+ piles new posts in that div instead of sorting them incorrectly.
     for (var i = awdiv.children.length; i > 1; i--) {
@@ -129,6 +129,11 @@ function sortContent() {
 
         // Video
         if(divs[j].getAttribute('class') == "Uga" && divs[j].getAttribute('itemtype') == "http://schema.org/VideoObject") {
+          isText = false;
+        }
+        
+        // Angesagt
+        if(divs[j].getAttribute('class') == "b01Gav") {
           isText = false;
         }
       }
