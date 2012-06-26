@@ -17,13 +17,6 @@ function inArray (needle, haystack) {
 }
 
 function createReplacementDivs() {
-  // Find stream content
-  var divs = document.getElementsByTagName("div");
-  for (var i = 0; i < divs.length; i++) {
-    if (divs[i].getAttribute("guidedhelpid") == "streamcontent") {
-     streamcontent =  divs[i];
-   }
-  }
   awdiv = streamcontent.childNodes[1];
   awdiv.setAttribute("style", "display: none;");
 
@@ -43,6 +36,19 @@ function createReplacementDivs() {
 }
 
 function sortContent() {
+
+  // Find stream content
+  var divs = document.getElementsByTagName("div");
+  for (var i = 0; i < divs.length; i++) {
+    if (divs[i].getAttribute("guidedhelpid") == "streamcontent") {
+     streamcontent =  divs[i];
+   }
+  }
+
+  // Check that it isn't a profile page
+  if (streamcontent.parentNode.getAttribute("role") == "tabpanel") {
+    return;
+  }
 
   // Check that replacement divs exist
   if (document.getElementById("mediadiv") === null || document.getElementById("textdiv") === null) {
@@ -64,18 +70,18 @@ function sortContent() {
       for (var j = 0; j < divs.length; j++) {
 
         // Picture / Gallery
-        if(inArray("photos", rightcol) && divs[j].getAttribute('class') == "Vs Om Mi") {
+        if(inArray("photos", rightcol) && divs[j].getAttribute('class') == "dv Mm Zf") {
           isLeft = false;
         }
-	if (inArray("photos", hide) && divs[j].getAttribute('class') == "Vs Om Mi") {
+	if (inArray("photos", hide) && divs[j].getAttribute('class') == "dv Mm Zf") {
           child.setAttribute("style", "display: none;");
 	}
 
         // Video
-        if(inArray("videos", rightcol) && divs[j].getAttribute('class') == "Uga" && divs[j].getAttribute('itemtype') == "http://schema.org/VideoObject") {
+        if(inArray("videos", rightcol) && divs[j].getAttribute('class') == "bva" && divs[j].getAttribute('itemtype') == "http://schema.org/VideoObject") {
           isLeft = false;
         }
-	if (inArray("videos", hide) && divs[j].getAttribute('class') == "Uga" && divs[j].getAttribute('itemtype') == "http://schema.org/VideoObject") {
+	if (inArray("videos", hide) && divs[j].getAttribute('class') == "bva" && divs[j].getAttribute('itemtype') == "http://schema.org/VideoObject") {
           child.setAttribute("style", "display: none;");
 	}
       }
@@ -147,15 +153,16 @@ function go () {
 
 
     // Generate Style overrides
-    var css = ".FE { background: -webkit-gradient(linear, left top, right top, from(" + theme + "), to(#ccc)) !important; } ";
+    var css = ".MI { background: -webkit-gradient(linear, left top, right top, from(" + theme + "), to(#ccc)) !important; } ";
     if (columns == "2") {
-      css = css + ".replacement {width: 50%; min-width: 500px; float: left; position: relative; } ";	
+      css = css + ".replacement {margin: 0 0 0 8px; min-width: 500px; float: left; position: relative; } ";	
     }
     if (showbubble == "N") {
-      css = css + ".SF { display: none !important; } .Zo { margin: 0 0 0 -50px; !important; } "; 
+      css = css + ".ie { display: none !important; } .Zo { margin: 0 0 0 -50px; !important; } "; 
     }
     if (showchat == "N") {
-      css = css + ".SSb { display: none !important; } .E9 { margin: 0 0 0 100px; }"; 
+      // TODO: CHECK
+      css = css + ".n0b { display: none !important; } .K9 { margin: 0 0 0 100px !important; } .J9 {margin: 0 0 0 100px !important; }"; 
     }
 
     // Create elements

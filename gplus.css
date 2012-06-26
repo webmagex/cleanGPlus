@@ -1,22 +1,29 @@
 /* Expand content div to fill window */
-.OT {
+.l8 {
   width: 95% !important;
+  margin-top: 0px !important;
 }
+.bR {
+  width: 100% !important;
+} 
 
 /* Move 'What's new' post entry box */
-.Sea {
+.Cla {
   bottom: 0px !important;
   position: fixed !important;
   z-index: 50 !important;
   margin-left: -20px !important;
   float: left !important;
 }
-.DAa { /* Shadow */
+.cVa { /* Shadow */
   display: none !important;
+}
+.Bla {
+  margin-left: -48px !important;
 }
 
 /* Move circle list to bottom */
-.PK {
+.kI {
   position: fixed !important;
   z-index: 50 !important;
   margin-left: -100px !important;
@@ -24,63 +31,68 @@
   height: 50px !important;
   width: 100% !important;
 }
+.GM{
+  vertical-align: top !important;
+  position: fixed !important;
+  bottom: 0px !important;
+  height: 50px !important;
+  width: 100% !important;
+  z-index: 50 !important;
+  left: 0px !important;
+  background: #f3f3f3 !important;
+  padding-left: 610px !important;
+}
+.Dla {
+  display: none !important;
+}
 .OK, .OQ { /* Position next to new post box */
   padding-left: 600px !important;
 }
-.kv, .Ny { /* Keep grey bar color */
+.pu, .zv { /* Keep grey bar color */
   background: none !important;
 }
 
 /* Post content */
-.FE { /* Name + Date line */
+.MI { /* Name + Date line */
   padding: 2px 2px 0 2px !important;
     background: #ddd !important;
 }
-.rs {
+.Hw {
   margin: 3px 3px 0 3px !important;
 }
 .Gm {
   padding: 3px 2px 0 !important;
 }
-.Op {
+.ci {
   padding: 0 !important;
 }
-.Gm .Om {
+.YQ {
+  padding-bottom: 5px !important;
+}
+.Ae {
+  padding: 2px 3px 4px 45px !important;
+}
+.rK, .zma {
+  display: none !important;
+}
+.mu {
+  padding: 0 !important;
+}
+.Sb {
   margin: 0 !important;
 }
-.Uga {
-  height: 335px !important;
+.Ep { /* Avatar */
+  margin: 0 5px 0px 0px !important;
 }
-.BE {
-  margin-top: -38px !important;
-  border-top: 0 !important;
-  height: 38px !important;
+.Mm {
+  margin: 0 !important;
 }
-.Yd.esw, .Tj {
-  float: right !important;
-}
-.h8 {
-  margin-top: 0 !important;
+.bR {
   width: 100% !important;
-}
-.Gb {
-  clear: none !important;
-  vertical-align: top !important;
-  display: inline-block !important;
-  margin: 0 10px !important;
-}
-.Zo {
-  margin: 0 !important;
-  padding: 0 10px 0 0 !important;
-}
-.RQ {
-  border-radius: 0 !important;
-  background: none !important;
-  border: 0px !important;
 }
 
 /* Hide right bar (friend suggestions, etc) */
-.ksa {
+.Ala {
   display: none !important;
 }
 
