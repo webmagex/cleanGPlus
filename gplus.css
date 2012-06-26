@@ -90,6 +90,23 @@
 .bR {
   width: 100% !important;
 }
+/* Sharing statistics */
+.LI {
+  border-top: 0 !important;
+  margin-top: -38px !important;
+  margin-right: 80px !important;
+}
+.eK, .dI {
+  margin-left: 7px !important;
+}
+.Od.esw, .dk {
+  float: right !important;
+}
+.Dp, .PJ {
+  margin-right: -205px !important;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
 
 /* Hide right bar (friend suggestions, etc) */
 .Ala {
