@@ -61,68 +61,76 @@ function sortContent() {
     // Note: We always leave one element in the aw div so that G+ piles new posts in that div instead of sorting them incorrectly.
     for (var i = awdiv.children.length; i > 1; i--) {
       var child = awdiv.children[i-1];
-      var timestamp = child.getElementsByTagName("a")[2];
-      child.setAttribute('title', timestamp.getAttribute('title'));
+      if (child) {
+        var timestampCandidates = child.getElementsByTagName("a");
+        var timestamp = timestampCandidates[2].getAttribute("title");
+        for (var i = 0; i < timestampCandidates.length; i++) {
+          if (timestampCandidates[i].getAttribute("title") == "Timestamp") {
+            timestamp = timestampCandidates[i].innerHTML;
+          }
+        }
+        child.setAttribute('title', timestamp);
 
-      // Check if it should be moved to right col
-      var isLeft = true;
-      var divs = child.getElementsByTagName("div");
-      for (var j = 0; j < divs.length; j++) {
+        // Check if it should be moved to right col
+        var isLeft = true;
+        var divs = child.getElementsByTagName("div");
+        for (var j = 0; j < divs.length; j++) {
 
-        // Picture / Gallery
-        if(inArray("photos", rightcol) && divs[j].getAttribute('class') == "dv Mm Zf") {
+          // Picture / Gallery
+          if(inArray("photos", rightcol) && divs[j].getAttribute('class') == "dv Mm Zf") {
+            isLeft = false;
+          }
+          if (inArray("photos", hide) && divs[j].getAttribute('class') == "dv Mm Zf") {
+            child.setAttribute("style", "display: none;");
+          }
+
+          // Video
+          if(inArray("videos", rightcol) && divs[j].getAttribute('class') == "bva" && divs[j].getAttribute('itemtype') == "http://schema.org/VideoObject") {
+            isLeft = false;
+          }
+          if (inArray("videos", hide) && divs[j].getAttribute('class') == "bva" && divs[j].getAttribute('itemtype') == "http://schema.org/VideoObject") {
+            child.setAttribute("style", "display: none;");
+          }
+        }
+        
+        // Angesagt
+        if(inArray("whatshot", rightcol) && child.title == "null") {
           isLeft = false;
         }
-	if (inArray("photos", hide) && divs[j].getAttribute('class') == "dv Mm Zf") {
+        if (inArray("whatshot", hide) && child.title == "null") {
           child.setAttribute("style", "display: none;");
-	}
+        }
 
-        // Video
-        if(inArray("videos", rightcol) && divs[j].getAttribute('class') == "bva" && divs[j].getAttribute('itemtype') == "http://schema.org/VideoObject") {
+        // Text (Other)
+        if(inArray("text", rightcol) && isLeft == true) {
           isLeft = false;
         }
-	if (inArray("videos", hide) && divs[j].getAttribute('class') == "bva" && divs[j].getAttribute('itemtype') == "http://schema.org/VideoObject") {
-          child.setAttribute("style", "display: none;");
-	}
-      }
 
-      // Angesagt
-      if(inArray("whatshot", rightcol) && child.title == "null") {
-        isLeft = false;
-      }
-      if (inArray("whatshot", hide) && child.title == "null") {
-        child.setAttribute("style", "display: none;");
-      }
-
-      // Text (Other)
-      if(inArray("text", rightcol) && isLeft == true) {
-          isLeft = false;
-      }
-
-      // Move div to correct block
-      // TODO: initial load from new post queue is OK. subsequent post loads prepend from queue in correct order, but append from queue in wrong order.
-      if (isLeft) {
-        if (textdiv.children.length > 0) {
-          if (child.getAttribute('title') > textdiv.children[0].getAttribute('title')) {
-            textdiv.insertBefore (child, textdiv.children[0]);
+        // Move div to correct block
+        // TODO: initial load from new post queue is OK. subsequent post loads prepend from queue in correct order, but append from queue in wrong order.
+        if (isLeft) {
+          if (textdiv.children.length > 0 && child.title != "null") {
+            if (child.getAttribute('title') > textdiv.children[0].getAttribute('title')) {
+              textdiv.insertBefore (child, textdiv.children[0]);
+            }
+            else {
+          	textdiv.appendChild (child);
+            }
+          } else {
+            textdiv.appendChild (child);
           }
-          else {
-        	textdiv.appendChild (child);
-          }
-        } else {
-          textdiv.appendChild (child);
         }
-      }
-      else {
-        if (mediadiv.children.length > 0) {
-          if (child.getAttribute('title') > mediadiv.children[0].getAttribute('title')) {
-            mediadiv.insertBefore (child, mediadiv.children[0]);
-          }
-          else {
+        else {
+          if (mediadiv.children.length > 0 && child.title != "null") {
+            if (child.getAttribute('title') > mediadiv.children[0].getAttribute('title')) {
+              mediadiv.insertBefore (child, mediadiv.children[0]);
+            }
+            else {
+              mediadiv.appendChild (child);
+            }
+          } else {
             mediadiv.appendChild (child);
           }
-        } else {
-          mediadiv.appendChild (child);
         }
       }
     }
@@ -155,7 +163,7 @@ function go () {
     // Generate Style overrides
     var css = ".MI { background: -webkit-gradient(linear, left top, right top, from(" + theme + "), to(#ccc)) !important; } ";
     if (columns == "2") {
-      css = css + ".replacement {margin: 0 0 0 8px; min-width: 500px; float: left; position: relative; } ";	
+      css = css + ".replacement {margin: 0 0 0 8px; min-width: 500px; float: left; position: relative; width: 49% } ";	
     }
     if (showbubble == "N") {
       css = css + ".ie { display: none !important; } .Zo { margin: 0 0 0 -50px; !important; } "; 
@@ -211,4 +219,3 @@ var head = document.getElementsByTagName("head")[0];
 var pauseScript = document.createElement("script");
 pauseScript.innerHTML = " function togglePause() {  var pauseButton = document.getElementById(\"paused\");  if (pauseButton.innerHTML == \"" + pauseText + "\") { pauseButton.innerHTML = \"" + startText + "\"; pauseButton.setAttribute(\"title\", \"" + startTitle + "\");  } else { pauseButton.innerHTML = \"" + pauseText + "\"; pauseButton.setAttribute(\"title\", \"" + pauseTitle + "\");  }}";
 head.appendChild(pauseScript);
-

@@ -79,7 +79,9 @@
   padding: 0 !important;
 }
 .Sb {
+  display: inline-block !important;
   margin: 0 !important;
+  vertical-align: text-top;
 }
 .Ep { /* Avatar */
   margin: 0 5px 0px 0px !important;
@@ -107,6 +109,9 @@
   padding-right: 10px !important;
   padding-left: 10px !important;
 }
+.XJ { /* Tiny avatars of people who +1'd */
+  display: none !important;
+}
 
 /* Hide right bar (friend suggestions, etc) */
 .Ala {
@@ -124,4 +129,21 @@
   background-color: #f8f8f8;
   background-image: -webkit-linear-gradient(top, #f8f8f8, #f1f1f1);
   border: 1px solid #c6c6c6;
+}
+
+/* Individual page and profile page fixes */
+.CZb {
+  margin-top: 0px !important;
+}
+.Vka {
+  top: 0px !important;
+}
+
+/* Condense circle menu */
+.a-w, .a-qn {
+  padding: 2px !important;
+}
+.Zh.a-w {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }
